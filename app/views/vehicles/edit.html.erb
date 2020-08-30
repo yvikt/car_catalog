@@ -1,0 +1,36 @@
+
+<div class="container">
+  <h2>Vehicle details</h2>
+  <div>
+    <img class='big-image' src="<%= "/#{@vehicle.img_url}" %>" alt=''>
+  </div>
+</div>
+<p>
+<% @vehicle.tags.each do |tag| %>
+  <a href="<%= tag_path tag.id %>">
+    <span class="tag"><%= tag.tag_name %></span>
+  </a>
+<% end %>
+</p>
+<%= form_for @vehicle do |f| %>
+
+  <%= f.label 'model' %>
+  <%= f.text_field :model %>
+  <br><br>
+  <%= f.label 'year' %>
+  <%= f.text_field :year %>
+  <br><br>
+  <%= f.label 'description' %>
+  <%= f.text_area :description %>
+  <br>
+
+  <%#= f.label 'add new tag' %>
+  <%#= select(:vehicle, :tags, @tags.collect {|t| [ t.tag_name , t.id ] }, {include_blank: 'no group' } , multiple: true, size: 10 ) %>
+
+  <br>
+  <%= f.submit 'change' %>
+  <button><%= link_to 'Back', :back %></button>
+
+<%end %>
+
+

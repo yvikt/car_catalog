@@ -1,0 +1,28 @@
+<h1>Edit Tag <%=@tag.tag_name %></h1>
+<%# if @tag.customized == false %>
+  <%# @tag.bg_color = '#999999'; @tag.font_color = '#000000'; @tag.border_color = '#999999' %>
+<%# end %>
+<%= form_for @tag do |f| %>
+
+  <%= f.label 'tag name' %>
+  <%= f.text_field :tag_name %>
+  <br><br>
+  <%= f.label 'tag color' %>
+  <%= f.color_field :bg_color %>
+
+  <br><br>
+  <%= f.label 'font color' %>
+  <%= f.color_field :font_color %>
+
+  <br><br>
+  <%= f.label 'border color' %>
+  <%= f.color_field :border_color %>
+
+  <br><br>
+  <%= f.label 'customized' %>
+  <%= check_box_tag 'customize', 1, @tag.customized %>
+
+  <br><br>
+  <%= f.submit 'change' %>
+<%end %>
+

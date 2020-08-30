@@ -1,0 +1,76 @@
+<div class="container">
+  <h2>Vehicle tags - add and remove</h2>
+  <% default_color = '#999999' %>
+  <% vehicle_tags = @vehicle.tags # теги конкретной машины %>
+  <% vehicle_tags.each do |tag| %>
+    <a href="<%= tag_path tag.id %>">
+      <span class="tag" style="background-color: <%= tag.bg_color  || default_color %>" ><%= tag.tag_name %></span>
+    </a>
+  <% end %>
+  <br><br>
+  <div>
+    <img class='big-image' src="<%= "/#{@vehicle.img_url}" %>" alt=''>
+  </div>
+</div>
+
+<%# ЗДЕСЬ ТРИ ФОРМЫ: изменеие, добавление, удаление
+
+<% vehicle_tags_ids = @vehicle.tags.map {|t| t.id} # id-шники тегов машины %>
+
+<%= form_for :tag, url: vehicle_update_tags_path, method: :patch, html: { class: "bla-bla", id: "bla-bla" } do |f|  %>
+
+  <% @tags.each do |tag| %>
+    <div class="tag-checkbox" style="background-color: <%= tag.bg_color  || default_color %>" >
+      <span class="tag"><%= tag.tag_name %></span>
+      <%#debugger %>
+
+      <%= check_box_tag "update_tags[]", tag.id, vehicle_tags_ids.include?(tag.id) %><%# checked для тегов которые уже есть %>
+
+    </div>
+
+  <% end %>
+  <br style="clear: both">
+  <%= f.submit 'update tags' %>
+
+<%end %>
+
+
+<%= form_for :tag, url: vehicle_update_tags_path, method: :patch, html: { class: "bla-bla", id: "bla-bla" } do |f|  %>
+
+  <% @tags.each do |tag| %>
+    <div class="tag-checkbox" style="background-color: <%= tag.bg_color  || default_color %>" >
+    <span class="tag"><%= tag.tag_name %></span>
+    <%= check_box_tag "add_tags[]", tag.id %>
+    </div>
+  <%end %>
+<!--<div class="clear-float"></div>-->
+  <br style="clear: both">
+  <%= f.submit 'add tags' %>
+
+<%end %>
+
+
+<%= form_for :tag, url: vehicle_update_tags_path, method: :patch, html: { class: "bla-bla", id: "bla-bla" } do |f|  %>
+
+  <% @tags.each do |tag| %>
+    <div class="tag-checkbox" style="background-color: <%= tag.bg_color  || default_color %>" >
+      <span class="tag"><%= tag.tag_name %></span>
+      <%= check_box_tag "dell_tags[]", tag.id %>
+    </div>
+  <%end %>
+  <!--<div class="clear-float"></div>-->
+  <br style="clear: both">
+  <%= f.submit 'delete tags' %>
+
+<%end %>
+
+
+
+
+
+
+
+
+
+<%#= f.label 'add new tag' %>
+<%#= select(:vehicle, :tags, @tags.collect {|t| [ t.tag_name , t.id ] }, {include_blank: 'no group' } , multiple: true, size: 10 ) %>

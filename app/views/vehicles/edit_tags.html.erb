@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>Vehicle tags - add and remove</h2>
+  <% default_color = '#999999' %>
+  <% vehicle_tags = @vehicle.tags # теги конкретной машины %>
+  <%# рисуем теги вверху %>
+  <% vehicle_tags.each do |tag| %>
+    <a href="<%= tag_path tag.id %>">
+      <span class="tag" style="background-color: <%= tag.bg_color  || default_color %>" ><%= tag.tag_name %></span>
+    </a>
+  <% end %>
+  <br><br>
+  <%# картинка машины %>
+  <div>
+    <img class='big-image' src="<%= "/#{@vehicle.img_url}" %>" alt=''>
+  </div>
+</div>
+
+<% vehicle_tags_ids = @vehicle.tags.map {|t| t.id} # id-шники тегов машины %>
+
+<%= form_for :tag, url: vehicle_update_tags_path, method: :patch, html: { class: "bla-bla", id: "bla-bla" } do |f|  %>
+
+  <%# рисуем теги с чекбоксами %>
+  <% @tags.each do |tag| %>
+    <div class="tag-checkbox" style="background-color: <%= tag.bg_color  || default_color %>" >
+      <span class="tag"><%= tag.tag_name %></span>
+      <%= check_box_tag "update_tags[]", tag.id, vehicle_tags_ids.include?(tag.id) %><%# checked для тегов которые уже есть %>
+    </div>
+  <% end %>
+
+  <br style="clear: both"><%# отмена флоата%>
+
+  <%= f.submit 'update tags' %>
+
+<%end %>
+

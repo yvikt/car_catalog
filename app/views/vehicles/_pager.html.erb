@@ -1,0 +1,30 @@
+<%#
+ЭТО партиал
+СДЕЛАТЬ хелпер для пейджига
+доступным везде
+
+добавить "следующая/предыдущая страница"
+%>
+
+<%
+
+  vehicles_count = @vehicles.count
+  vehicles_on_page = 24
+  pages_count = vehicles_count / vehicles_on_page
+  pages_count += 1 if vehicles_count % vehicles_on_page
+  page = params[:page].to_i
+  page = 1 if page == 0
+  @from = (page - 1) * vehicles_on_page
+  @to = page * vehicles_on_page - 1
+  @to = vehicles_count - 1 if @to > vehicles_count - 1
+%>
+<!--<p>params[page] = <%#=params[:page] %></p>-->
+<!--<p>page <%#= page %></p>-->
+
+<p>
+  pages <% pages_count.times do |p| %>
+      <span style="padding: 5px; <%= "border: 1px solid black; border-radius: 5px;" if p + 1 == page%>">
+      <%= link_to "#{p+1}", vehicles_path + "?page=#{p+1}" %>
+      </span>
+  <% end %>
+</p>

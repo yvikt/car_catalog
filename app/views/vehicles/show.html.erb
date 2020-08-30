@@ -1,0 +1,25 @@
+
+<div class="container">
+  <h2>Vehicle details</h2>
+  <% default_color = '#999999' %>
+  <%# @vehicle.tags.each do |tag| %>
+<!--    <a href="<%#= "#{vehicles_path}?tag=#{tag.id}" %>">-->
+<!--      <span class="tag" style="background-color: <%#= tag.bg_color || default_color  %>" ><%#= tag.tag_name %></span>-->
+<!--    </a>-->
+  <%# end %>
+  <%= draw_tags @vehicle.tags %>
+  <br><br>
+    <div>
+      <img class='big-image' src="<%= "/#{@vehicle.img_url}" %>" alt=''>
+    </div>
+  <div>id: <%= @vehicle.id %></div>
+  <dvi>model: <%= @vehicle.model || 'not defined' %></dvi>
+  <div>year: <%= @vehicle.year  || 'not defined' %></div>
+  <div>description: <%= @vehicle.description  || 'not defined' %></div>
+  <button><%=link_to 'edit tags', vehicle_edit_tags_path(@vehicle) %></button>
+  <button><%=link_to 'edit', edit_vehicle_path(@vehicle) %></button>
+  <button><%= link_to 'Back', :back %></button>
+
+
+
+</div>

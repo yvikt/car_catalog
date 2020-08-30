@@ -1,0 +1,25 @@
+<h1>create new tag</h1>
+<% @tag.tag_name = 'new tag'; @tag.bg_color = '#999999'; @tag.font_color = '#000000'; @tag.border_color = '#999999' %>
+  <%= form_for @tag do |f| %>
+    <%#= render 'shared/error_messages' %>
+  <%= f.label :name %>
+  <%= f.text_field :tag_name %>
+
+  <br><br>
+  <%= f.label 'tag color' %>
+  <%= f.color_field :bg_color %>
+
+  <br><br>
+  <%= f.label 'font color' %>
+  <%= f.color_field :font_color %>
+
+  <br><br>
+  <%= f.label 'border color' %>
+  <%= f.color_field :border_color %>
+
+  <br><br>
+  <%= check_box_tag 'customize', 1 %>
+
+  <%= f.submit 'create' %>
+
+  <% end %>

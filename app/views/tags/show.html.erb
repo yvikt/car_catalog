@@ -1,0 +1,10 @@
+<% default_color = '#999999' %>
+<h1>Tag information</h1>
+<p>
+  <%= draw_tag @tag %>
+  <button><%= link_to 'edit', edit_tag_path(@tag)%></button>
+  <button><%= link_to 'delete', tag_path(@tag), method: :delete %></button>
+  <button><%= link_to 'Back', :back %></button>
+  <button><%= link_to 'all tags', tags_path %></button>
+</p>
+
