@@ -3,7 +3,7 @@ module TagsHelper
   # отрисовка одного тега
   def draw_tag(tag, path=vehicles_path) # path для отладки в консоли app.vehicles_path
     output = "<a href='#{path}?tag=#{tag.id}'><span class='tag'"
-    output = "<a href='#{path}/#{tag.id}'><span class='tag'" if path = tags_path # костыль для tags/index.html.erb
+    output = "<a href='#{path}/#{tag.id}'><span class='tag'" if path == tags_path # костыль для tags/index.html.erb
     # кастомизация
     if tag.customized
       output += " style='"
