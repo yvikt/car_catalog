@@ -17,6 +17,11 @@
   <%= f.label 'border color' %>
   <%= f.color_field :border_color %>
 
+  <% cat = ['color','size'] %>
+  <br><br>
+  <%= f.label 'category' %>
+  <%= select(:product, :group_id, cat.collect {|t| [ "#{t}" , t ] }, {include_blank: 'no category'} )%>
+
   <br><br>
   <%= f.label 'customized' %>
   <%= check_box_tag 'customize', 1 %>
