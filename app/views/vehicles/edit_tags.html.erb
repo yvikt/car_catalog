@@ -4,7 +4,7 @@
   <% vehicle_tags = @vehicle.tags # теги конкретной машины %>
   <%# рисуем теги вверху %>
   <% vehicle_tags.each do |tag| %>
-    <%= draw_tags @vehicle.tags %>
+    <%= draw_tag tag %>
   <% end %>
   <br><br>
   <%# картинка машины %>
