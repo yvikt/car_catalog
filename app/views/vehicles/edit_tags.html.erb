@@ -4,9 +4,7 @@
   <% vehicle_tags = @vehicle.tags # теги конкретной машины %>
   <%# рисуем теги вверху %>
   <% vehicle_tags.each do |tag| %>
-    <a href="<%= tag_path tag.id %>">
-      <span class="tag" style="background-color: <%= tag.bg_color  || default_color %>" ><%= tag.tag_name %></span>
-    </a>
+    <%= draw_tags @vehicle.tags %>
   <% end %>
   <br><br>
   <%# картинка машины %>

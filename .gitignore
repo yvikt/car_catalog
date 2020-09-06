@@ -19,3 +19,6 @@
 .idea
 .directory
 /public/cars
+
+config.ru
+/config/application.rb
