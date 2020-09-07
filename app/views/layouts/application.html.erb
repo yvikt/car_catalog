@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<%=render 'layouts/header' unless current_page? '/' %>
+<%=render 'layouts/header' unless current_page? root_path %>
 <% flash.each do |message_type, message| %>
   <div class="alert alert-<%= message_type %>"><%= message.html_safe %></div>
 <% end %>
