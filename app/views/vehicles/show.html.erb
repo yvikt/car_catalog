@@ -1,25 +1,27 @@
-
-<div class="container">
   <h2>Vehicle details</h2>
   <% default_color = '#999999' %>
-  <%# @vehicle.tags.each do |tag| %>
-<!--    <a href="<%#= "#{vehicles_path}?tag=#{tag.id}" %>">-->
-<!--      <span class="tag" style="background-color: <%#= tag.bg_color || default_color  %>" ><%#= tag.tag_name %></span>-->
-<!--    </a>-->
-  <%# end %>
-  <%= draw_tags @vehicle.tags %>
-  <br><br>
-    <div>
-      <img class='big-image' src="<%= "/#{@vehicle.img_url}" %>" alt=''>
-    </div>
-  <div>id: <%= @vehicle.id %></div>
-  <dvi>model: <%= @vehicle.model || 'not defined' %></dvi>
-  <div>year: <%= @vehicle.year  || 'not defined' %></div>
-  <div>description: <%= @vehicle.description  || 'not defined' %></div>
-  <button><%=link_to 'edit tags', vehicle_edit_tags_path(@vehicle) %></button>
-  <button><%=link_to 'edit', edit_vehicle_path(@vehicle) %></button>
-  <button><%= link_to 'Back', :back %></button>
-
-
-
-</div>
+  <div class="row">
+      <div class="col-sm-8 col-md-6">
+        <div class="thumbnail">
+          <img src="<%= "/#{@vehicle.img_url}" %>" alt="car image">
+          <div class="caption">
+            <p>
+              <%= draw_tags @vehicle.tags %>
+            </p>
+            <p>
+              description: <%= @vehicle.description  || 'not defined' %>
+            </p>
+            <ul class="list-group">
+              <li class="list-group-item">id: <%= @vehicle.id %></li>
+              <li class="list-group-item">model: <%= @vehicle.model || 'not defined' %></li>
+              <li class="list-group-item">year: <%= @vehicle.year  || 'not defined' %></li>
+            </ul>
+            <p>
+              <%=link_to 'Edit', edit_vehicle_path(@vehicle), class: "btn btn-warning" %>
+              <%=link_to 'Edit tags', vehicle_edit_tags_path(@vehicle), class: "btn btn-danger" %>
+              <%=link_to 'Back', :back, class: "btn btn-info" %>
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>

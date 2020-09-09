@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   end
 
   resources :tags
-
+  get   'tags-settings' => 'tags#settings', as: 'tags_settings'
 end

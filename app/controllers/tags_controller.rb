@@ -6,6 +6,10 @@ class TagsController < ApplicationController
     @tags = Tag.order(:tag_name)
   end
 
+  def settings
+    @tags = Tag.order(:tag_name)
+  end
+
   def show
   end
 

@@ -1,36 +1,23 @@
-<%#= render 'tags/tags' %>
-<%= draw_tags @tags %>
 <%= render 'vehicles/pager' %>
 
-<div class="car-container">
-  <div class="grid-container">
-    <%# отображение одной страницы из пейджинга %>
-    <%  @vehicles.each do |vehicle| %>
-      <div class='grid-item'>
-        <a href="<%= vehicle_path(vehicle.id) %>">
-        <img class='item-image' src="<%= vehicle.img_url %>" alt=''>
-        </a>
-        <div class='item-description'>
-          <div>id: <%= vehicle.id %></div>
-          <div>model: <%= vehicle.model  || 'not defined' %></div>
-          <div>year: <%= vehicle.year  || 'not defined' %></div>
-          <br>
-          <%# теги машины %>
-          <%# default_color = '#999999' %>
-          <%# @vehicles[vehicle_id].tags.each do |tag| %>
-            <%#= draw_tag tag %>
-          <%# end %>
+<div class="row">
+  <%  @vehicles.each do |vehicle| %>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="<%= vehicle.img_url %>" alt="car image">
+      <div class="caption">
+        <h3>model: <%= vehicle.model  || 'not defined' %></h3>
+        <p>
           <%= draw_tags vehicle.tags %>
-          <br><br>
-          <button><%=link_to 'show', vehicle_path(vehicle.id) %></button>
-          <button><%=link_to 'edit', edit_vehicle_path(vehicle.id) %></button>
-          <button><%=link_to 'edit tags', vehicle_edit_tags_path(vehicle.id) %></button>
-        </div>
+        </p>
+        <p>
+          <%=link_to 'Details', vehicle_path(vehicle.id), class: "btn btn-info" %>
+        </p>
       </div>
-    <% end %>
+    </div>
   </div>
-
+  <% end %>
 </div>
 
 <%= render 'vehicles/pager' %>
-<span>vehicles count = <%= @vehicles.count %></span>
+
