@@ -3,13 +3,30 @@ class VehiclesController < ApplicationController
   before_action :load_vehicle, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tags = Tag.order(:tag_name)
-    # если в строке запроса ?tag=1
+    @tags = Tag.order(:tag_name) # для draw_tag
+
+    # если в строке запроса ?tag=1 ищем машины с таким тегом
     if (tag = params[:tag])
-      # ищем машины с таким тегом
-      @vehicles = Vehicle.find( Tag.find(tag).vehicles.map {|v| v.id } )
+      @tag = tag
+      vehicles_count = Tag.find(tag).vehicles.count
+      vehicles_on_page = 9
+      pages_count = vehicles_count / vehicles_on_page
+      pages_count += 1 if vehicles_count % vehicles_on_page
+      @pages_count = pages_count
+      current_page = params[:page].to_i
+      current_page = 1 if current_page == 0
+      @current_page = current_page
+      @vehicles = Tag.find(tag).vehicles.offset((current_page-1)*vehicles_on_page).limit(vehicles_on_page)
     else
-      @vehicles = Vehicle.all
+      vehicles_count = Vehicle.count
+      vehicles_on_page = 9
+      pages_count = vehicles_count / vehicles_on_page
+      pages_count += 1 if vehicles_count % vehicles_on_page
+      @pages_count = pages_count
+      current_page = params[:page].to_i
+      current_page = 1 if current_page == 0
+      @current_page = current_page
+      @vehicles = Vehicle.offset((current_page-1)*vehicles_on_page).limit(vehicles_on_page)
     end
 
   end

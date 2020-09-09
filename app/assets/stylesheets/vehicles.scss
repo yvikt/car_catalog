@@ -1,24 +1,11 @@
 // Place all the styles related to the vehicles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body {
-  font-family: "Helvetica Neue", "Arial", sans-serif;
-}
 
-a {
-  outline: none;
-  text-decoration: none;
-  padding: 2px 1px 0;
-}
-a:link {
-  color: black;
-}
 
-a:visited {
-  color: black;
-}
 
-.container{
+
+.car-container{
   margin: 0 auto;
 }
 
@@ -46,17 +33,17 @@ a:visited {
 }
 
 @media (min-width: 768px) {
-  .container {
+  .car-container {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
-  .container {
+  .car-container {
     width: 970px;
   }
 }
 @media (min-width: 1200px) {
-  .container {
+  .car-container {
     width: 1100px;
   }
 }
