@@ -16,7 +16,7 @@
 
 
 //= require bootstrap
-//= require bootstrap-sprockets
+// = require bootstrap-sprockets
 
 
 //= require_tree .

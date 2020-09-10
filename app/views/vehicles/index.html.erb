@@ -1,16 +1,16 @@
 <%= render 'vehicles/pager' %>
 
-<div class="row">
+<div class="row row-cols-1 row-cols-md-3">
   <%  @vehicles.each do |vehicle| %>
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="<%= vehicle.img_url %>" alt="car image">
-      <div class="caption">
-        <h3>model: <%= vehicle.model  || 'not defined' %></h3>
-        <p>
+    <div class="col mb-4">
+      <div class="card">
+      <img src="<%= vehicle.img_url %>" class="card-img-top" alt="car image">
+      <div class="card-body">
+        <h5 class="card-title">model: <%= vehicle.model  || 'not defined' %></h5>
+        <p class="card-text">
           <%= draw_tags vehicle.tags %>
         </p>
-        <p>
+        <p class="card-text">
           <%=link_to 'Details', vehicle_path(vehicle.id), class: "btn btn-info" %>
         </p>
       </div>

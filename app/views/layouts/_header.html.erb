@@ -1,29 +1,22 @@
-<header class="navbar navbar-fixed-top">
-  <div class="container">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Brand и toggle сгруппированы для лучшего отображения на мобильных дисплеях -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="<%= root_path %>">Home</a>
-        </div>
-
-        <!-- Соберите навигационные ссылки, формы, и другой контент для переключения -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><%= link_to 'Vehicles', vehicles_path %></li>
-            <li><%= link_to 'Tags list', tags_path %></li>
-            <li><%= link_to 'Tags settings', tags_settings_path %></li>
-          </ul>
-
-
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <%= link_to 'Home', root_path, class: "navbar-brand" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <%= link_to vehicles_path, "class" => "nav-link" do %>
+          Vehicles
+          <span class="sr-only">(current)</span>
+        <%end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Tags list', tags_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Tags settings', tags_settings_path, class: "nav-link" %>
+      </li>
+    </ul>
   </div>
-</header>
+</nav>
