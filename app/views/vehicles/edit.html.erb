@@ -1,36 +1,43 @@
+<h2>Edit vehicle information</h2>
+<p>
+  <%= draw_tags @vehicle.tags %>
+</p>
+<div class="row row-cols-1 row-cols-md-2">
+  <div class="col mb-4">
+<div class="card" style="width: 100%; max-width: 32rem">
+  <img src="<%= "/#{@vehicle.img_url}" %>" class="card-img-top" alt="car image">
+  <div class="card-body">
+    <h5 class="card-title">Vehicle details</h5>
+    <p class="card-text">
+      description: <%= @vehicle.description  || 'not defined' %>
+    </p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">model: <%= @vehicle.model || 'not defined' %></li>
+    <li class="list-group-item">year: <%= @vehicle.year  || 'not defined' %></li>
+  </ul>
+</div>
+  </div>
+  <div class="col mb-4">
+<%= form_for @vehicle do |f| %>
+  <div class="form-group">
+    <%= f.label 'model' %>
+    <%= f.text_field :model, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'year' %>
+    <%= f.text_field :year, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'description' %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
 
-<div class="container">
-  <h2>Vehicle details</h2>
-  <div>
-    <img class='big-image' src="<%= "/#{@vehicle.img_url}" %>" alt=''>
+  <div class="form-group">
+  <%=f.submit 'Change', class: "btn btn-danger" %>
+  <%=link_to 'Edit tags', vehicle_edit_tags_path(@vehicle), class: "btn btn-warning" %>
+  <%=link_to 'Back', :back, class: "btn btn-info" %>
+  </div>
+<%end %>
   </div>
 </div>
-<p>
-<% @vehicle.tags.each do |tag| %>
-  <a href="<%= tag_path tag.id %>">
-    <span class="tag"><%= tag.tag_name %></span>
-  </a>
-<% end %>
-</p>
-<%= form_for @vehicle do |f| %>
-
-  <%= f.label 'model' %>
-  <%= f.text_field :model %>
-  <br><br>
-  <%= f.label 'year' %>
-  <%= f.text_field :year %>
-  <br><br>
-  <%= f.label 'description' %>
-  <%= f.text_area :description %>
-  <br>
-
-  <%#= f.label 'add new tag' %>
-  <%#= select(:vehicle, :tags, @tags.collect {|t| [ t.tag_name , t.id ] }, {include_blank: 'no group' } , multiple: true, size: 10 ) %>
-
-  <br>
-  <%= f.submit 'change' %>
-  <button><%= link_to 'Back', :back %></button>
-
-<%end %>
-
-
