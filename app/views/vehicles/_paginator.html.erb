@@ -1,0 +1,76 @@
+<%if @tag %>
+  <% tag = "&tag=#{@tag}" %>
+<%else %>
+  <% tag ='' %>
+<%end %>
+<nav aria-label="Page navigation">
+  <ul class="pagination  pagination-sm">
+    <li class="page-item"><%# -10 Page %>
+        <%= link_to vehicles_path + "?page=#{@current_page - 10 > 0 ? @current_page -10 : 1}#{tag}", {:"aria-label" => "Previous", :"class" => "page-link" } do %>
+          <span aria-hidden="true">&laquo;</span>
+        <%end %>
+    </li>
+    <li class="page-item"><%# Previous Page %>
+      <% if @current_page > 1 %>
+        <%= link_to vehicles_path + "?page=#{@current_page-1}#{tag}", {:"aria-label" => "Previous", :"class" => "page-link" } do %>
+          <span aria-hidden="true">&lsaquo;</span>
+        <%end %>
+      <%else %>
+        <%= link_to "#", {:"aria-label" => "", :"class" => "page-link" } do %>
+          <span aria-hidden="true">&lsaquo;</span>
+        <%end %>
+      <%end %>
+    </li>
+    <%# Smart Pager %>
+    <%
+      numbers = []
+      if @pages_count <= 8
+        numbers = 1..@pages_count
+      else
+        if @current_page <= 3
+          numbers += (1..6).to_a
+          numbers << '&hellip;'
+          numbers  << @pages_count
+        else
+          if @current_page < @pages_count - 7
+            p_start = @current_page - 2
+            p_end = @current_page + 3
+            numbers += (p_start..p_end).to_a
+            numbers << '&hellip;'
+            numbers  << @pages_count
+          else
+            p_start = @pages_count - 7
+            p_end = @pages_count
+            numbers += (p_start..p_end).to_a
+          end
+        end
+      end
+      # debugger
+     %>
+    <% numbers.each_with_index do |n,p| %><%# TODO выводить только 5 номеров страниц, затем троеточие и последнюю %>
+      <li class="page-item <%='active' if n == @current_page %>" >
+        <%if n.to_i > 0 %>
+        <%= link_to "#{n}".html_safe, vehicles_path + "?page=#{n}#{tag}" , :"class" => "page-link"%>
+        <%else %>
+          <span class="page-link" aria-hidden="true">&hellip;</span>
+        <%end %>
+      </li>
+    <% end %>
+    <li class="page-item"><%# Next Page %>
+      <% if @current_page < @pages_count %>
+      <%= link_to vehicles_path + "?page=#{@current_page+1}#{tag}", {:"aria-label" => "Next", :"class" => "page-link" } do %>
+        <span aria-hidden="true">&rsaquo;</span>
+      <%end %>
+      <%else %>
+        <%= link_to "#", {:"aria-label" => "", :"class" => "page-link" } do %>
+            <span aria-hidden="true">&rsaquo;</span>
+        <%end %>
+      <%end %>
+    </li>
+    <li class="page-item"><%# +10 Page %>
+      <%= link_to vehicles_path + "?page=#{@current_page + 10 <= @pages_count ? @current_page + 10 : @pages_count }#{tag}", {:"aria-label" => "Previous", :"class" => "page-link" } do %>
+        <span aria-hidden="true">&raquo;</span>
+      <%end %>
+    </li>
+  </ul>
+</nav>
